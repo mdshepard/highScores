@@ -6,7 +6,9 @@ var resources = {
     "/IP": "Internet Protocol",
     "/TCP": "Transmission Control Protocol"
 };
-
+function sortScores(a, b) {
+    return b.score - a.score;
+}
 const http = require('http');
 
 const hostname = '127.0.0.1';
@@ -32,7 +34,8 @@ const server = http.createServer((req, res) => {
             else {
                 res.statusCode = 201;
                 scores.push(body);
-                
+                scores.sort(sortScores);
+                scores.length = 3;
             }
 
         }
